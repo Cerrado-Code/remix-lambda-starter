@@ -17,7 +17,7 @@ export default function Index() {
       <Link to="/modal-comentarios">
         <button>Tela Comentario</button>
       </Link>
-      <Link to="/lista">
+      <Link to="/tela-comentario">
         <button>Listagem Comentarios</button>
       </Link>
     </div>
