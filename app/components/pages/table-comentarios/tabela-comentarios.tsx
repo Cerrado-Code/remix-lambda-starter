@@ -9,6 +9,8 @@ import {
 } from "../../ui/table";
 import { Card, CardContent } from "../../ui/card";
 import { Button } from "../../ui/button";
+import ModalComentario from "../modal-comentario/modal-comentario";
+import { Eye, EyeOff, NotepadText} from "lucide-react";
 
 export default function TableComentarios() {
   const tableContent = [
@@ -17,45 +19,67 @@ export default function TableComentarios() {
       rede: "Facebook",
       comentario:
         "Adorei o produto! Ele superou minhas expectativas e o atendimento foi excelente!",
-      sentimento: "positivo",
+      sentimento: "P",
+      nome: "Silva",
+      data: "2024-09-28",
+      visibilidade:false,
+      resposta: "Que legal!"
     },
     {
       id: 2,
       rede: "Instagram",
       comentario:
         "Estou tão decepcionada com isso... A qualidade não é nada do que eu esperava.",
-      sentimento: "negativo",
+      sentimento: "D",
+      nome: "Silva",
+      data: "2024-09-28",
+      visibilidade:true
     },
     {
       id: 3,
       rede: "LinkedIn",
       comentario:
         "Produto incrível! Com certeza, uma adição valiosa ao meu trabalho.",
-      sentimento: "positivo",
+      sentimento: "P",
+      nome: "Silva",
+      data: "2024-09-28",
+      visibilidade:false
     },
     {
       id: 4,
       rede: "TikTok",
       comentario: "Totalmente desapontada. Não valeu a pena!",
-      sentimento: "negativo",
+      sentimento: "D",
+      nome: "Silva",
+      data: "2024-09-28",
+      visibilidade:true
     },
     {
       id: 5,
       rede: "Pinterest",
       comentario: "Simplesmente amei! Super recomendo para quem ama DIY.",
-      sentimento: "positivo",
+      sentimento: "P",
+      nome: "Silva",
+      data: "2024-09-28",
+      visibilidade:true
     },
     {
       id: 6,
       rede: "Twitter X",
       comentario: "Péssima experiência. Não compre!",
-      sentimento: "negativo",
+      sentimento: "D",
+      nome: "Silva",
+      data: "2024-09-28",
+      visibilidade:false
     },
     {
       id: 7,
       rede: "Bluesky",
       comentario: "Esse produto é tudo! Já quero mais!",
-      sentimento: "positivo",
+      sentimento: "O",
+      nome: "Silva",
+      data: "2024-09-28",
+      visibilidade:true
     },
   ];
 
@@ -77,9 +101,10 @@ export default function TableComentarios() {
                     <TableCell>{row.rede}</TableCell>
                     <TableCell>{row.comentario}</TableCell>
                     <TableCell>{row.sentimento}</TableCell>
-                    <TableCell>
-                      <Button>A1</Button>
-                      <Button>A1</Button>
+                    <TableCell className="flex  justify-evenly">
+                      <ModalComentario dados={row} conteudoBotao={<NotepadText />}></ModalComentario>
+                      {!row.visibilidade && <Button onClick={() => alert("Visivel")}><Eye /></Button>}
+                      {row.visibilidade && <Button onClick={() => alert("Invisivel")}><EyeOff /></Button>}
                     </TableCell>
                   </TableRow>
                 );
