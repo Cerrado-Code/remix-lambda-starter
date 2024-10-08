@@ -1,7 +1,7 @@
 import { json, LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { auth } from './services/auth/auth.server'
 
-
+import React from "react";
 import styles from './tailwind.css?url'
 
 import {
@@ -13,9 +13,11 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import { AuthProvider } from "./lib/auth-hook";
+import { SideBar } from "./components/pages/sidebar/sidebar";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const user = await auth.isAuthenticated(request)
+
   return json({ user })
 }
 
@@ -25,7 +27,7 @@ export const links: LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const loaderData = useLoaderData<typeof loader>()
-
+  
   return (
     <html lang="en">
       <head>
@@ -37,7 +39,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
       <AuthProvider user={loaderData?.user ?? null}>
+        <SideBar>
         {children}
+        </SideBar>
         </AuthProvider>
         <ScrollRestoration />
         <Scripts />

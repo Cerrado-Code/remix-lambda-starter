@@ -1,15 +1,16 @@
 export interface Comentario {
-    nome?: string;
-    data?: string ; 
-    comentario?: string;
-    visibilidade?: boolean;
-    rede?: string,
-    sentimento?: string,
-    resposta?: string,
-  }
-  
-  export interface ModalComentarioProps {
-    dados: Comentario;
-    conteudoBotao?: React.ReactNode;
-    className?: string
-  }
+  name?: string;
+  publication_date?: string;
+  content?: string;
+  visibility?: boolean;
+  social_network?: string;
+  feeling?: string;
+  answer?: string;
+  id?: string;
+}
+
+export interface ModalComentarioProps {
+  dados: Comentario;
+  conteudoBotao?: React.ReactNode;
+  className?: string;
+}
