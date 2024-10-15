@@ -1,0 +1,15 @@
+auth:
+  secret: ${AUTH_SECRET}
+  sessionLength: 2592000 # expires after a month
+  accessToken:
+    duration: 30m
+  refreshToken:
+    duration: 30d
+  resetToken:
+    duration: 30m
+  inviteToken:
+    duration: 7d
+  cookie:
+    secret: ${AUTH_COOKIE_SECRET}
+    httpOnly: true
+    sameSite: lax
