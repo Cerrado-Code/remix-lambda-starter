@@ -16,9 +16,9 @@ const  ViewNovidades: React.FC<ViewNovidadesProps> = ({ className }) => {
           <TabsTrigger value="designadas" className={cn('w-full rounded-none')}>Designadas</TabsTrigger>
           <TabsTrigger value="todas" className={cn('w-full rounded-none')}>Todas</TabsTrigger>
         </TabsList>
-        <TabsContent value="novas"><ListaComentariosNovos /></TabsContent>
-        <TabsContent value="designadas"></TabsContent>
-        <TabsContent value="todas"></TabsContent>
+        <TabsContent value="novas" className="m-0"><ListaComentariosNovos /></TabsContent>
+        <TabsContent value="designadas" className="m-0"><ListaComentariosNovos /></TabsContent>
+        <TabsContent value="todas" className="m-0"><ListaComentariosNovos /></TabsContent>
       </Tabs>
     </div>
   );

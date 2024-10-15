@@ -60,16 +60,14 @@ export const loader = ({ params }: LoaderFunctionArgs) => {
 
 export default function SidebarAccounts() {
   const [isOpen, setIsOpen] = useState(false);
-  const loaderData = useLoaderData<typeof loader>();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);''
   };
 
-  console.log("loaderData",loaderData)
   
   return (
-    <div className={`flex  flex-col ${isOpen ? 'w-64' : 'w-16'} transition-all duration-300 h-screen bg-white items-center`} style={{ minHeight: "100vh" }}>
+    <div className={`flex  flex-col ${isOpen ? 'w-64' : 'w-16'} transition-all duration-300 bg-white items-center`} style={{ minHeight: "99vh" }}>
         <button onClick={toggleSidebar} className="w-full p-3">
         {isOpen ? <span className="flex justify-between text-2xl ml-3">{"Perfis "}<ChevronLeftIcon   size={30}/></span>: <ChevronRightIcon  size={30}/>}
         </button>

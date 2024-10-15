@@ -1,18 +1,27 @@
-import { useSearchParams } from "@remix-run/react";
+import { useLocation, useSearchParams } from "@remix-run/react";
 import { Settings } from "lucide-react";
 import { useEffect, useState } from "react";
 import LinkDecorated from "~/components/generic/link-decorated";
 import { Button } from "~/components/ui/button";
 import { useDebounce } from "~/lib/use-debounce";
 import { cn } from "~/lib/utils";
+import ViewNovidades from "../view-novidades/view-novidades";
 
-interface InboxPageProps {
-  className: string | undefined;
+interface InboxListaComentariosProps {
+  className?: string;
 }
-const InboxPage: React.FC<InboxPageProps> = ({ className }) => {
+const InboxListaComentarios: React.FC<InboxListaComentariosProps> = ({
+  className,
+}) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get("view") || "";
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    mudarView('novidades')
+    console.log(searchParams)
+  }, []);
+
+  
 
   const mudarView = (event: React.ChangeEvent<HTMLInputElement> | string) => {
     let value: string;
@@ -26,10 +35,6 @@ const InboxPage: React.FC<InboxPageProps> = ({ className }) => {
     setQuery(value);
   };
 
-  useEffect(() => {
-    setQuery('novidades');
-  }, [])
-  
 
   useDebounce(
     () => {
@@ -50,23 +55,24 @@ const InboxPage: React.FC<InboxPageProps> = ({ className }) => {
   );
 
   return (
-    <div className={cn(className, "w-full")}>
-      <div className="flex bg-white justify-between px-10 py-1 items-center ">
-        <div className="flex justify-between  gap-x-10 text-center">
-          <div className="text-2xl">Caixa de Entrada</div>
-          <div>
-            <Button onClick={() => mudarView("novidades")}>Novidade</Button>{" "}
-            <Button onClick={() => mudarView("lidas")}>Lidas</Button>
+      <div className={cn(className, "w-full border-b-2")}>
+        <div className="flex bg-white justify-between px-10 py-1 items-center ">
+          <div className="flex justify-between  gap-x-10 text-center">
+            <div className="text-2xl">Caixa de Entrada</div>
+            <div>
+              <Button onClick={() => mudarView("novidades")}>Novidade</Button>{" "}
+              <Button onClick={() => mudarView("lidas")}>Lidas</Button>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <Button>Automatizações</Button>
+            <LinkDecorated to="/settings">
+              <Settings />
+            </LinkDecorated>
           </div>
         </div>
-        <div>
-          <LinkDecorated to="/settings">
-            <Settings />
-          </LinkDecorated>
-        </div>
       </div>
-    </div>
-  );
+   );
 };
 
-export default InboxPage;
+export default InboxListaComentarios;
